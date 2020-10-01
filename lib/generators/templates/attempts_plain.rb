@@ -60,7 +60,7 @@ class <%= scope_module %>AttemptsController < ApplicationController
   end
 
   def attempt_params
-    rails4? ? params_whitelist : params[:survey_attempt]
+    rails6? ? params_whitelist : params[:survey_attempt]
   end
 
   def params_whitelist

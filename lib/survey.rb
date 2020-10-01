@@ -1,10 +1,10 @@
 module ::Kernel
-  def rails4?
-    return defined?(Rails) && Rails::VERSION::MAJOR == 4
+  def rails6?
+    return defined?(Rails) && Rails::VERSION::MAJOR == 6
   end
 
   def in_rails_3(&block)
-    yield if block_given? unless rails4?
+    yield if block_given? unless rails6?
   end
 end
 
