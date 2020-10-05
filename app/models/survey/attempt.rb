@@ -19,13 +19,13 @@ class Survey::Attempt < ActiveRecord::Base
   validate :check_number_of_attempts_by_survey
 
   #scopes
-  scope :wins,   -> { where(:winner => true) }
-  scope :looses, -> { where(:winner => false) }
-  scope :scores, -> { order("score DESC") }
-  scope :for_survey, ->(survey) { where(:survey_id => survey.id) }
-  scope :exclude_survey,  ->(survey) { where("NOT survey_id = #{survey.id}") }
-  scope :for_participant, ->(participant) {
-    where(:participant_id => participant.try(:id), :participant_type => participant.class.base_class)
+  scope :wins,   -> { where(winner: true) }
+  scope :looses, -> { where(winner: false) }
+  scope :scores, -> { order('score DESC') }
+  scope :for_survey, -> (survey) { where(survey_id: survey.id) }
+  scope :exclude_survey,  -> (survey) { where("NOT survey_id = #{survey.id}") }
+  scope :for_participant, -> (participant) {
+    where(participant_id: participant.try(:id), participant_type: participant.class.to_s)
   }
 
   # callbacks
